@@ -33,7 +33,7 @@ export default function ContactPage() {
     <>
       <Navbar />
 
-      <section className="relative pt-20 pb-16 md:pt-28 md:pb-20 bg-muted">
+      <section className="relative pt-12 pb-16 md:pt-16 md:pb-20 bg-background">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             badge="Contact Us"

@@ -22,6 +22,23 @@ const fadeUp = {
   transition: { duration: 0.6 },
 };
 
+const FloatingBadge = ({ icon: Icon, title, subtitle, className }: any) => (
+  <motion.div
+    initial={{ opacity: 0, x: 20 }}
+    whileInView={{ opacity: 1, x: 0 }}
+    transition={{ delay: 0.5, duration: 0.8 }}
+    className={`absolute z-20 bg-background/90 backdrop-blur-xl border border-primary/20 p-2 rounded-2xl shadow-2xl flex items-center gap-3 ${className}`}
+  >
+    <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+      <Icon className="w-5 h-5 text-primary" />
+    </div>
+    <div>
+      <h4 className="text-sm font-bold font-heading text-foreground leading-tight">{title}</h4>
+      <p className="text-[10px] text-muted-foreground uppercase tracking-widest font-bold">{subtitle}</p>
+    </div>
+  </motion.div>
+);
+
 const stagger = {
   initial: { opacity: 0, y: 30 },
   whileInView: { opacity: 1, y: 0 },
@@ -39,106 +56,130 @@ export default function HomePage() {
       </div>
 
       {/* ─── HERO ─── */}
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-        {/* BG Image */}
-        <div className="absolute inset-0">
-          <Image
-            src="/images/hero.png"
-            alt="Premium dining experience"
-            fill
-            sizes="100vw"
-            className="object-cover"
-            priority
-            quality={90}
-          />
-          <div className="absolute inset-0 bg-black/50 dark:bg-black/70" />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-background" />
-        </div>
+      <section className="relative min-h-[80vh] lg:min-h-[85vh] flex items-center bg-background overflow-hidden">
+        {/* Decorative elements */}
+        <div className="absolute top-0 right-0 w-full lg:w-1/2 h-full bg-gradient-to-l from-background/40 to-transparent z-0" />
+        <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-primary/10 blur-[120px] rounded-full z-0" />
+        <div className="absolute -top-24 right-1/4 w-64 h-64 bg-primary/5 blur-[100px] rounded-full z-0" />
+        
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-10 lg:py-0">
+          <div className="grid lg:grid-cols-2 gap-16 lg:gap-8 items-center">
+            {/* Left Content */}
+            <div className="max-w-2xl text-center lg:text-left">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
+                className="flex items-center justify-center lg:justify-start gap-3 mb-6"
+              >
+                <div className="h-px w-12 bg-primary" />
+                <span className="text-xs font-bold uppercase tracking-[0.4em] text-primary/90">
+                  Est. 2018 • Indian Fine Dining
+                </span>
+              </motion.div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-20">
-          <div className="max-w-3xl">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="flex items-center gap-3 mb-6"
-            >
-              <div className="h-px w-12 bg-primary" />
-              <span className="text-xs font-bold uppercase tracking-[0.4em] text-white/90">
-                Est. 2018 • Premium Dining
-              </span>
-            </motion.div>
+              <motion.h1
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] font-bold font-heading leading-[1.1] mb-6 text-foreground"
+              >
+                Discover the <br />
+                <span className="text-primary italic">Soul of India</span>
+              </motion.h1>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.15 }}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-heading leading-tight mb-8 text-white drop-shadow-sm"
-            >
-              Experience Taste{" "}
-              <span className="text-gradient-bistro">Like Never Before</span>
-            </motion.h1>
+              <motion.p
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="text-lg md:text-xl text-muted-foreground max-w-lg mb-10 mx-auto lg:mx-0 leading-relaxed font-sans"
+              >
+                Experience an extraordinary culinary journey through the heart of India. 
+                From street-food classics to royal delicacies, every bite tells a story.
+              </motion.p>
 
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.3 }}
-              className="text-lg md:text-xl text-white/80 max-w-xl mb-12 leading-relaxed font-sans"
-            >
-              Where culinary artistry meets unforgettable ambiance. Handcrafted dishes, 
-              world-class cocktails, and moments that linger long after the last bite.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.45 }}
-              className="flex flex-wrap gap-5"
-            >
-              <Link href="/booking">
-                <Button className="gradient-bistro text-white font-bold text-base px-10 h-14 rounded-full hover:shadow-xl hover:shadow-primary/30 transition-all hover:-translate-y-0.5">
-                  Reserve a Table
-                  <ArrowRight className="w-5 h-5 ml-2" />
-                </Button>
-              </Link>
-              <Link href="/menu">
-                <Button
-                  variant="outline"
-                  className="border-white/30 text-white bg-white/10 hover:bg-white/20 hover:border-white/50 backdrop-blur-md font-bold text-base px-10 h-14 rounded-full transition-all"
-                >
-                  Explore Menu
-                </Button>
-              </Link>
-            </motion.div>
-
-            {/* Social proof */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.8 }}
-              className="flex items-center gap-6 mt-16 pt-8 border-t border-white/10"
-            >
-              <div className="flex -space-x-3">
-                {["SC", "JR", "EW", "MP"].map((initials, i) => (
-                  <div
-                    key={i}
-                    className="w-12 h-12 rounded-full border-2 border-primary bg-background flex items-center justify-center text-xs font-bold text-foreground overflow-hidden shadow-lg"
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                className="flex flex-wrap justify-center lg:justify-start gap-6"
+              >
+                <Link href="/menu">
+                  <Button className="gradient-bistro text-white font-bold text-lg px-12 h-16 rounded-full hover:shadow-2xl hover:shadow-primary/40 transition-all hover:-translate-y-1 group">
+                    Explore Menu
+                    <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </Link>
+                <Link href="/booking">
+                  <Button
+                    variant="outline"
+                    className="border-white/20 text-white bg-white/5 hover:bg-white/10 hover:border-white/40 backdrop-blur-md font-bold text-lg px-12 h-16 rounded-full transition-all"
                   >
-                     <div className="w-full h-full gradient-bistro flex items-center justify-center text-white">
-                       {initials}
-                     </div>
-                  </div>
-                ))}
-              </div>
-              <div>
-                <div className="flex items-center gap-1 mb-1">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                    Book a Table
+                  </Button>
+                </Link>
+              </motion.div>
+              
+              {/* Social proof */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.2 }}
+                className="flex items-center justify-center lg:justify-start gap-6 mt-12 pt-8 border-t border-white/10"
+              >
+                <div className="flex -space-x-3">
+                  {["SC", "JR", "EW", "MP"].map((initials, i) => (
+                    <div
+                      key={i}
+                      className="w-12 h-12 rounded-full border-2 border-[#042c2c] bg-background flex items-center justify-center text-xs font-bold text-foreground overflow-hidden shadow-lg"
+                    >
+                       <div className="w-full h-full gradient-bistro flex items-center justify-center text-white">
+                         {initials}
+                       </div>
+                    </div>
                   ))}
-                  <span className="text-base font-bold text-white ml-2">4.9/5.0</span>
                 </div>
-                <p className="text-xs text-white/70 tracking-wide uppercase font-semibold">Join 5,000+ Monthly Happy Guests</p>
+                <div className="text-left">
+                  <div className="flex items-center gap-1 mb-1">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 fill-primary text-primary" />
+                    ))}
+                    <span className="text-base font-bold text-white ml-2">4.9/5.0</span>
+                  </div>
+                  <p className="text-[11px] text-white/50 tracking-[0.2em] uppercase font-black">Trusted by 5,000+ Happy Guests</p>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Right Image Content */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8, rotate: 5 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              transition={{ duration: 1.2, ease: "easeOut", delay: 0.4 }}
+              className="relative aspect-square max-w-[500px] w-full mx-auto lg:ml-auto"
+            >
+              {/* Floating elements background effect */}
+              <div className="absolute inset-0 bg-primary/20 blur-[120px] rounded-full scale-75 animate-pulse" />
+              
+              <div className="relative z-10 w-full h-full rounded-full border-[12px] border-white/5 overflow-hidden shadow-[0_0_120px_rgba(0,0,0,0.6)]">
+                <Image
+                  src="/images/hero-modern.png"
+                  alt="Modern Indian Cuisine"
+                  fill
+                  className="object-cover hover:scale-105 transition-transform duration-[2000ms]"
+                  priority
+                />
               </div>
+              
+              <FloatingBadge 
+                icon={Award} 
+                title="Top Rated" 
+                subtitle="2024 Award" 
+                className="-top-6 -right-6 hidden md:flex" 
+              />
+
+              {/* Decorative circle */}
+              <div className="absolute -bottom-10 -left-10 w-40 h-40 border border-primary/20 rounded-full animate-spin-slow z-0" />
             </motion.div>
           </div>
         </div>
@@ -147,16 +188,15 @@ export default function HomePage() {
         <motion.div
            animate={{ y: [0, 10, 0] }}
            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-           className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/50"
+           className="absolute bottom-10 left-10 hidden lg:flex flex-col items-center gap-3 text-muted-foreground/30"
         >
-          <div className="w-6 h-10 rounded-full border-2 border-white/20 flex justify-center pt-2">
-            <div className="w-1 h-2 rounded-full bg-white/60 animate-bounce" />
-          </div>
+          <span className="text-[10px] uppercase tracking-[0.3em] font-bold vertical-text">Scroll</span>
+          <div className="w-[1px] h-20 bg-gradient-to-b from-primary/60 to-transparent" />
         </motion.div>
       </section>
 
       {/* ─── FEATURED MENU ─── */}
-      <section className="py-20 md:py-28 bg-background border-b border-border">
+      <section className="py-12 md:py-16 bg-background border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             badge="Our Specialties"
@@ -164,16 +204,16 @@ export default function HomePage() {
             description="Carefully curated selections that define our culinary philosophy. Each dish is a masterpiece."
           />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {featuredItems.map((item, i) => (
               <motion.div
                 key={item.id}
                 {...stagger}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
                 whileHover={{ y: -8 }}
-                className="group relative rounded-3xl overflow-hidden bg-card border border-border/50 hover:border-primary/20 transition-all duration-500 shadow-sm"
+                className="group relative rounded-2xl overflow-hidden bg-card border border-border/40 hover:border-primary/20 transition-all duration-500 shadow-sm"
               >
-                <div className="relative h-60 overflow-hidden">
+                <div className="relative h-48 overflow-hidden">
                   <Image
                     src={item.image}
                     alt={item.name}
@@ -181,27 +221,27 @@ export default function HomePage() {
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                     className="object-cover group-hover:scale-110 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   {item.isPopular && (
-                    <span className="absolute top-4 right-4 px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.2em] gradient-bistro text-white rounded-full shadow-lg">
+                    <span className="absolute top-3 right-3 px-3 py-1 text-[9px] font-bold uppercase tracking-widest bg-primary text-white rounded-lg shadow-lg">
                       Popular
                     </span>
                   )}
                 </div>
-                <div className="p-6">
-                  <div className="flex justify-between items-start mb-2">
-                    <h3 className="font-heading font-bold text-lg text-foreground">
+                <div className="p-5">
+                  <div className="flex justify-between items-start mb-1.5">
+                    <h3 className="font-heading font-bold text-base text-foreground group-hover:text-primary transition-colors">
                       {item.name}
                     </h3>
-                    <span className="text-primary font-bold text-lg">₹{item.price}</span>
+                    <span className="text-primary font-bold text-base">₹{item.price}</span>
                   </div>
-                  <p className="text-sm text-muted-foreground line-clamp-2 mb-6 leading-relaxed">
+                  <p className="text-[13px] text-muted-foreground line-clamp-2 mb-5 leading-relaxed font-sans">
                     {item.description}
                   </p>
                   <Link href="/menu">
                     <Button
                       variant="outline"
-                      className="w-full rounded-xl border-border hover:bg-primary hover:text-white transition-all text-xs font-bold uppercase tracking-widest h-10"
+                      className="w-full rounded-lg border-border/60 hover:bg-primary hover:text-white transition-all text-[10px] font-bold uppercase tracking-widest h-9"
                     >
                       View Details
                     </Button>
@@ -228,17 +268,17 @@ export default function HomePage() {
       <MorphingReveal 
         image="/images/chef.png"
         title="Chef's Canvas"
-        subtitle="Where every ingredient tells a story of passion and tradition."
-        description="Founded with a mission to redefine fine dining, Ember & Oak combines the raw power of wood-fire with the delicate touch of artisan craftsmanship."
+        subtitle="Where every spice tells a story of passion and tradition."
+        description="Founded with a mission to redefine Indian fine dining, Bhoj combines the raw power of tandoor-fire with the delicate touch of artisan craftsmanship."
       />
 
       {/* ─── WHY CHOOSE US ─── */}
-      <section className="relative pt-20 pb-20 md:pt-28 md:pb-28 overflow-hidden bg-muted">
+      <section className="relative pt-12 pb-12 md:pt-16 md:pb-16 overflow-hidden bg-muted">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
-            badge="Why Ember & Oak"
+            badge="Why Bhoj"
             title="Crafted with Passion"
-            description="Every detail is intentional, from sourcing the finest ingredients to creating the perfect atmosphere."
+            description="Every detail is intentional, from sourcing the finest Indian spices to creating the perfect atmosphere."
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12">
@@ -308,7 +348,7 @@ export default function HomePage() {
       </section>
 
       {/* ─── ABOUT PREVIEW ─── */}
-      <section className="py-20 md:py-28 bg-background overflow-hidden">
+      <section className="py-12 md:py-16 bg-background overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div
@@ -316,9 +356,9 @@ export default function HomePage() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
-              className="relative pr-8 pb-8"
+              className="relative lg:pr-12 lg:pb-12"
             >
-              <div className="relative rounded-3xl overflow-hidden aspect-[4/5] shadow-2xl border border-border">
+              <div className="relative rounded-2xl overflow-hidden aspect-[16/10] max-h-[450px] shadow-2xl border border-border">
                 <Image
                   src="/images/interior.png"
                   alt="Restaurant interior"
@@ -327,14 +367,14 @@ export default function HomePage() {
                   className="object-cover"
                 />
               </div>
-              <div className="absolute -bottom-2 -left-2 sm:-bottom-8 sm:-left-8 bg-card rounded-2xl p-8 border border-border shadow-2xl z-10">
-                <div className="flex items-center gap-5">
-                  <div className="w-16 h-16 rounded-2xl gradient-bistro flex items-center justify-center shadow-lg">
-                    <Award className="w-8 h-8 text-white" />
+              <div className="absolute -bottom-4 -left-4 sm:-bottom-8 sm:-left-8 bg-background/90 backdrop-blur-xl rounded-xl p-6 border border-primary/20 shadow-2xl z-10 hidden sm:block max-w-[240px]">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                    <Award className="w-6 h-6 text-primary" />
                   </div>
                   <div>
-                    <p className="font-heading font-bold text-2xl">Michelin</p>
-                    <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest mt-1">Two Star Restaurant</p>
+                    <p className="font-heading font-bold text-lg leading-tight">2024 Award</p>
+                    <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest mt-1">Michelin Selection</p>
                   </div>
                 </div>
               </div>
@@ -353,8 +393,8 @@ export default function HomePage() {
                 A Legacy of <span className="text-gradient-bistro">Culinary Excellence</span>
               </h2>
               <p className="text-muted-foreground text-lg leading-relaxed mb-8">
-                Founded in 2018, Ember & Oak was born from a passion for creating extraordinary 
-                dining experiences. Our philosophy is simple — source the best ingredients, 
+                Founded in 2018, Bhoj was born from a passion for creating extraordinary 
+                Indian dining experiences. Our philosophy is simple — source the best local ingredients, 
                 treat them with respect, and serve them in an atmosphere that makes every 
                 meal feel special.
               </p>
@@ -406,7 +446,7 @@ export default function HomePage() {
       />
 
       {/* ─── TESTIMONIALS ─── */}
-      <section className="py-20 md:py-28 relative overflow-hidden bg-muted border-y border-border">
+      <section className="py-12 md:py-16 relative overflow-hidden bg-muted border-y border-border">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             badge="Testimonials"
@@ -454,7 +494,7 @@ export default function HomePage() {
           <SectionHeading
             badge="Gallery"
             title="A Visual Journey"
-            description="Experience the ambiance and art of Ember & Oak through our lens."
+            description="Experience the ambiance and art of Bhoj through our lens."
           />
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">

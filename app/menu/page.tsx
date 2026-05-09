@@ -36,7 +36,7 @@ export default function MenuPage() {
     <>
       <Navbar />
 
-      <section className="relative pt-20 pb-10 md:pt-28 md:pb-12 bg-muted">
+      <section className="relative pt-12 pb-10 md:pt-16 md:pb-12 bg-background">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             badge="Our Menu"
@@ -78,7 +78,7 @@ export default function MenuPage() {
       </section>
 
       {/* Menu Grid */}
-      <section className="pb-20 md:pb-28 bg-background">
+      <section className="py-20 md:py-28 bg-background relative border-y border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatePresence mode="wait">
             <motion.div

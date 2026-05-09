@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Lato } from "next/font/google";
+import { Lato, Playfair_Display } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
@@ -10,27 +10,34 @@ const lato = Lato({
   display: "swap",
 });
 
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-heading",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: {
-    template: "%s | Ember & Oak",
-    default: "Ember & Oak | Premium Dining Experience",
+    template: "%s | Bhoj",
+    default: "Bhoj | Authentic Indian Fine Dining",
   },
   description:
-    "Experience culinary artistry at Ember & Oak. Premium dining with handcrafted cocktails, farm-to-table ingredients, and an unforgettable atmosphere. Book your table today.",
+    "Experience the rich flavors of India at Bhoj. Premium Indian dining with traditional spices, tandoor specialties, and a royal atmosphere by Aditya Inn.",
   keywords: [
-    "fine dining",
-    "restaurant",
-    "premium dining",
-    "craft cocktails",
+    "indian restaurant",
+    "bhoj restaurant",
+    "aditya inn",
+    "fine dining india",
+    "butter chicken",
+    "biryani",
     "reservations",
-    "gourmet food",
   ],
   openGraph: {
-    title: "Ember & Oak | Premium Dining Experience",
+    title: "Bhoj | Authentic Indian Fine Dining",
     description:
-      "Experience culinary artistry at Ember & Oak. Premium dining with handcrafted cocktails, farm-to-table ingredients, and an unforgettable atmosphere.",
+      "Experience the rich flavors of India at Bhoj. Premium Indian dining with traditional spices, tandoor specialties, and a royal atmosphere.",
     type: "website",
-    locale: "en_US",
+    locale: "en_IN",
   },
 };
 
@@ -42,7 +49,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${lato.variable} h-full antialiased`}
+      className={`${lato.variable} ${playfair.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="relative min-h-full flex flex-col" suppressHydrationWarning>

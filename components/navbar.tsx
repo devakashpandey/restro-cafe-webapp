@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "next-themes";
@@ -17,24 +18,11 @@ export default function Navbar() {
   const [activeColor, setActiveColor] = useState("orange");
   const pathname = usePathname();
 
-  const colors = [
-    { name: "orange", class: "bg-[#c2410c]", label: "Orange" },
-    { name: "mustard", class: "bg-[#b45309]", label: "Mustard" },
-    { name: "wine", class: "bg-[#991b1b]", label: "Wine" },
-    { name: "teal", class: "bg-[#0f766e]", label: "Teal" },
-  ];
+
 
   useEffect(() => {
-    const savedColor = localStorage.getItem("theme-color") || "orange";
-    setActiveColor(savedColor);
-    document.documentElement.setAttribute("data-color", savedColor);
+    document.documentElement.setAttribute("data-color", "orange");
   }, []);
-
-  const changeColor = (color: string) => {
-    setActiveColor(color);
-    document.documentElement.setAttribute("data-color", color);
-    localStorage.setItem("theme-color", color);
-  };
 
   useEffect(() => {
     setMounted(true);
@@ -54,25 +42,29 @@ export default function Navbar() {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={`sticky top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
         isScrolled
-          ? "glass py-2.5 shadow-lg border-border/10"
-          : "bg-background/80 backdrop-blur-md py-4 border-transparent"
+          ? "glass py-2 shadow-lg border-border/10"
+          : "bg-background/80 backdrop-blur-md py-3 border-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-md shadow-primary/10">
-              <span className="text-primary-foreground font-bold text-lg font-heading">
-                E
-              </span>
+            <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-primary/20 shadow-lg group-hover:scale-110 transition-transform duration-300 bg-white">
+              <Image
+                src="/logo.png"
+                alt="Bhoj Logo"
+                fill
+                className="object-cover"
+                priority
+              />
             </div>
             <div className="flex flex-col">
-              <span className="text-lg font-bold tracking-tight font-heading text-foreground">
-                Ember & Oak
+              <span className="text-xl font-bold tracking-tight font-heading text-foreground">
+                Bhoj
               </span>
               <span className="text-[10px] uppercase tracking-[0.25em] text-primary/60 font-bold leading-none hidden sm:block">
-                Cafe & Bistro
+                By Aditya Inn
               </span>
             </div>
           </Link>
@@ -103,22 +95,7 @@ export default function Navbar() {
 
           {/* Desktop CTA & Theme Controls */}
           <div className="hidden lg:flex items-center gap-5">
-            {mounted && (
-              <div className="flex items-center gap-2 px-3 py-1.5 bg-muted/30 rounded-full border border-border/5">
-                {colors.map((color) => (
-                  <button
-                    key={color.name}
-                    onClick={() => changeColor(color.name)}
-                    className={`w-3.5 h-3.5 rounded-full transition-all duration-300 ${color.class} ${
-                      activeColor === color.name 
-                        ? "ring-2 ring-primary ring-offset-2 ring-offset-background scale-110" 
-                        : "opacity-40 hover:opacity-100"
-                    }`}
-                    title={color.label}
-                  />
-                ))}
-              </div>
-            )}
+
             {mounted && (
               <button
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
@@ -185,22 +162,7 @@ export default function Navbar() {
                   </Link>
                 </motion.div>
               ))}
-              <div className="pt-6 pb-4 px-4 flex items-center justify-between border-b border-border/5">
-                <span className="text-sm font-medium text-muted-foreground">Select Accent Color</span>
-                <div className="flex items-center gap-3">
-                  {colors.map((color) => (
-                    <button
-                      key={color.name}
-                      onClick={() => changeColor(color.name)}
-                      className={`w-6 h-6 rounded-full transition-all duration-300 ${color.class} ${
-                        activeColor === color.name 
-                          ? "ring-2 ring-primary ring-offset-2 ring-offset-background scale-110" 
-                          : "opacity-60"
-                      }`}
-                    />
-                  ))}
-                </div>
-              </div>
+
               <div className="pt-4 space-y-4">
                  <Link href="tel:+15551234567" className="flex items-center gap-3 px-4 py-3 text-muted-foreground font-medium">
                   <Phone className="w-5 h-5 text-primary" />

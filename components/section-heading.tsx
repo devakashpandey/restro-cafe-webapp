@@ -21,7 +21,7 @@ export default function SectionHeading({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.6 }}
-      className={`mb-12 md:mb-16 ${align === "center" ? "text-center" : "text-left"}`}
+      className={`mb-10 md:mb-12 ${align === "center" ? "text-center" : "text-left"}`}
     >
       {badge && (
         <span className="inline-block px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-primary border border-primary/20 rounded-full mb-4 bg-primary/5">

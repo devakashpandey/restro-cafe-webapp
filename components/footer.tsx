@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import {
   MapPin,
@@ -24,7 +25,7 @@ export default function Footer() {
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   return (
-    <footer className="relative bg-[#1a3932] dark:bg-[#0d1211] text-white border-t border-white/10">
+    <footer className="relative bg-background text-foreground border-t border-border/10">
       {/* Top Gradient Accent */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
@@ -33,29 +34,32 @@ export default function Footer() {
           {/* Brand */}
           <div className="space-y-6">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center shadow-lg">
-                <span className="text-white font-bold text-xl font-heading">
-                  E
-                </span>
+              <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-primary/20 shadow-lg group-hover:scale-105 transition-transform duration-300 bg-white">
+                <Image
+                  src="/logo.png"
+                  alt="Bhoj Logo"
+                  fill
+                  className="object-cover"
+                />
               </div>
               <div>
-                <h3 className="text-xl font-bold font-heading text-white">
-                  Ember & Oak
+                <h3 className="text-2xl font-bold font-heading text-foreground">
+                  Bhoj
                 </h3>
                 <p className="text-[10px] uppercase tracking-[0.4em] text-primary font-bold">
-                  Fine Dining
+                  By Aditya Inn
                 </p>
               </div>
             </div>
-            <p className="text-sm text-white/60 leading-relaxed font-sans max-w-xs">
-              Where culinary artistry meets unforgettable ambiance. Every dish tells a story, every moment becomes a memory.
+            <p className="text-sm text-muted-foreground leading-relaxed font-sans max-w-xs">
+              Authentic Indian flavors served with royal hospitality. Every meal is a celebration of taste and tradition at Bhoj.
             </p>
             <div className="flex gap-4">
               {[InstagramIcon, FacebookIcon, TwitterIcon].map((Icon, i) => (
                 <a
                   key={i}
                   href="#"
-                  className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-white/60 hover:text-primary hover:bg-white/10 transition-all duration-300 border border-white/5 hover:border-primary/30"
+                  className="w-10 h-10 rounded-xl bg-muted flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-muted/80 transition-all duration-300 border border-border hover:border-primary/30"
                 >
                   <Icon className="w-5 h-5" />
                 </a>
@@ -79,7 +83,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-white/60 hover:text-primary transition-colors duration-300 font-medium"
+                    className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300 font-medium"
                   >
                     {link.label}
                   </Link>
@@ -163,7 +167,7 @@ export default function Footer() {
         {/* Bottom */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-10 border-t border-white/10">
           <div className="flex items-center gap-6 text-[13px] text-white/40 font-medium">
-            <span>© {new Date().getFullYear()} Ember & Oak Boutique.</span>
+            <span>© {new Date().getFullYear()} Bhoj Restaurant & Aditya Inn.</span>
             <div className="flex gap-4">
               <a href="#" className="hover:text-primary transition-colors">Privacy</a>
               <a href="#" className="hover:text-primary transition-colors">Terms</a>

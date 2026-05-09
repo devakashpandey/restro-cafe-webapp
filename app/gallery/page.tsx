@@ -61,7 +61,7 @@ export default function GalleryPage() {
     <>
       <Navbar />
 
-      <section className="relative pt-20 pb-10 md:pt-28 md:pb-12 bg-muted">
+      <section className="relative pt-12 pb-10 md:pt-16 md:pb-12 bg-background">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             badge="Gallery"

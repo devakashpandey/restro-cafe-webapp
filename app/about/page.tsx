@@ -22,7 +22,7 @@ export default function AboutPage() {
       <Navbar />
 
       {/* Hero */}
-      <section className="relative pt-20 pb-12 md:pt-28 md:pb-16 overflow-hidden bg-muted">
+      <section className="relative pt-12 pb-12 md:pt-16 md:pb-16 overflow-hidden bg-background">
         <div className="absolute inset-0">
           <Image
             src="/images/interior.png" // Using existing image
@@ -49,7 +49,7 @@ export default function AboutPage() {
               <span className="text-gradient-bistro">Culinary Art</span>
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              From humble beginnings to a celebrated dining destination, discover the heart and soul behind Ember & Oak.
+              From humble beginnings to a celebrated dining destination, discover the heart and soul behind Bhoj.
             </p>
           </motion.div>
         </div>
@@ -70,10 +70,10 @@ export default function AboutPage() {
               </h2>
               <div className="space-y-6 text-muted-foreground leading-relaxed text-base">
                 <p>
-                  Ember & Oak was born in 2018 from a simple belief: dining should be more than just eating — it should be an experience that engages all the senses and creates lasting memories.
+                  Bhoj was born in 2018 from a simple belief: dining should be more than just eating — it should be an experience that engages all the senses and creates lasting memories.
                 </p>
                 <p>
-                  Our founder, Chef Marcus Chen, trained in the kitchens of Paris, Tokyo, and New York before bringing his global perspective to create something truly unique. His vision was to build a restaurant where classical culinary techniques meet modern innovation.
+                  Our founder, Chef Arjun Sharma, trained in the kitchens of Delhi, Mumbai, and New York before bringing his culinary expertise to create something truly unique. His vision was to build a restaurant where traditional Indian cooking techniques meet modern innovation.
                 </p>
                 <p>
                   With locally-sourced ingredients, a world-class team, and an unwavering commitment to excellence, we continue to push boundaries and redefine what premium dining means.
@@ -90,8 +90,8 @@ export default function AboutPage() {
             >
               <div className="rounded-3xl overflow-hidden aspect-[4/5] border border-border shadow-2xl relative">
                 <Image
-                  src="/images/chef.png" // Placeholder or actual chef image from artifacts if any
-                  alt="Chef Marcus Chen"
+                  src="/indian_executive_chef_arjun_sharma_1778350990562.png" 
+                  alt="Chef Arjun Sharma"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover"
@@ -99,7 +99,7 @@ export default function AboutPage() {
                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-40" />
               </div>
               <div className="absolute -bottom-2 -left-2 sm:-bottom-8 sm:-left-8 bg-card rounded-2xl p-6 border border-border shadow-2xl">
-                <p className="font-heading font-bold text-primary text-xl mb-1">Chef Marcus Chen</p>
+                <p className="font-heading font-bold text-primary text-xl mb-1">Chef Arjun Sharma</p>
                 <p className="text-xs text-muted-foreground uppercase tracking-widest font-semibold">Founder & Executive Chef</p>
               </div>
             </motion.div>
@@ -108,7 +108,7 @@ export default function AboutPage() {
       </section>
 
       {/* Values (Grid) */}
-      <section className="py-20 md:py-28 bg-muted relative border-y border-border">
+      <section className="py-20 md:py-28 bg-background relative border-y border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             badge="Our Values"
@@ -182,10 +182,10 @@ export default function AboutPage() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-16">
             {[
-              { name: "Marcus Chen", role: "Executive Chef", initials: "MC" },
-              { name: "Sarah Laurent", role: "Head Pastry Chef", initials: "SL" },
-              { name: "David Park", role: "Sommelier", initials: "DP" },
-              { name: "Emily Rodriguez", role: "Manager", initials: "ER" },
+              { name: "Arjun Sharma", role: "Executive Chef", image: "/indian_executive_chef_arjun_sharma_1778350990562.png" },
+              { name: "Neha Kapoor", role: "Head Pastry Chef", image: "/indian_pastry_chef_neha_kapoor_1778351018867.png" },
+              { name: "Vikram Malhotra", role: "Restaurant Manager", image: "/indian_restaurant_manager_vikram_malhotra_1778351047709.png" },
+              { name: "Priya Singh", role: "Guest Relations", image: "/indian_guest_relations_priya_singh_1778351071586.png" },
             ].map((member, i) => (
               <motion.div
                 key={i}
@@ -193,17 +193,19 @@ export default function AboutPage() {
                 transition={{ duration: 0.5, delay: i * 0.1 }}
                 className="group text-center"
               >
-                <div className="relative w-44 h-44 mx-auto rounded-full overflow-hidden mb-6 border-4 border-muted group-hover:border-primary/20 shadow-lg transition-all duration-500">
-                  <div className="absolute inset-0 gradient-bistro flex items-center justify-center">
-                    <span className="text-4xl font-bold text-primary-foreground font-heading">
-                      {member.initials}
-                    </span>
-                  </div>
+                <div className="relative w-44 h-44 mx-auto rounded-full overflow-hidden mb-6 border-4 border-muted group-hover:border-primary/40 shadow-lg transition-all duration-500 bg-muted">
+                  <Image
+                    src={member.image}
+                    alt={member.name}
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />
                 </div>
-                <h3 className="font-heading font-bold text-xl mb-1">
+                <h3 className="font-heading font-bold text-xl mb-1 group-hover:text-primary transition-colors">
                   {member.name}
                 </h3>
-                <p className="text-sm text-primary font-medium">{member.role}</p>
+                <p className="text-sm text-muted-foreground font-medium uppercase tracking-widest">{member.role}</p>
               </motion.div>
             ))}
           </div>
@@ -211,7 +213,7 @@ export default function AboutPage() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-24 relative overflow-hidden bg-muted">
+      <section className="py-24 relative overflow-hidden bg-background">
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
         
         <div className="relative max-w-4xl mx-auto px-4 text-center">

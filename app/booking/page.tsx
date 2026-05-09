@@ -75,7 +75,7 @@ export default function BookingPage() {
     <>
       <Navbar />
 
-      <section className="relative pt-20 pb-20 md:pt-28 md:pb-28 bg-background">
+      <section className="relative pt-12 pb-20 md:pt-16 md:pb-28 bg-background">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             badge="Reservations"

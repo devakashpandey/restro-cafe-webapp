@@ -6,7 +6,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
-  --font-heading: var(--font-sans); /* Use Lato globally */
+  --font-heading: var(--font-heading);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
@@ -22,72 +22,45 @@
 }
 
 :root {
-  --background: #fdfbf7;
-  --foreground: #1c1c1c;
-  --card: #ffffff;
-  --card-foreground: #1c1c1c;
-  --popover: #ffffff;
-  --popover-foreground: #1c1c1c;
-  --primary: #c2410c; /* Orange is the new Default */
-  --primary-foreground: #ffffff;
-  --secondary: #eff2f0;
-  --secondary-foreground: #c2410c;
-  --muted: #eff2f0;
-  --muted-foreground: #666666;
-  --accent: #eff2f0;
-  --accent-foreground: #c2410c;
-  --destructive: #9b2c2c;
-  --border: #e2e8e5;
-  --input: #e2e8e5;
-  --ring: #c2410c;
-}
-
-/* Color Presets */
-[data-color="mustard"] {
-  --primary: #b45309;
-  --ring: #b45309;
-}
-[data-color="wine"] {
-  --primary: #991b1b;
-  --ring: #991b1b;
-}
-[data-color="teal"] {
-  --primary: #0f766e;
-  --ring: #0f766e;
-}
-
-.dark {
-  --background: #0d1211;
-  --foreground: #fdfbf7;
-  --card: #141a18;
-  --card-foreground: #fdfbf7;
-  --popover: #141a18;
-  --popover-foreground: #fdfbf7;
-  --primary: #fb923c; /* Orange for Dark Mode */
-  --primary-foreground: #0d1211;
-  --secondary: #141a18;
-  --secondary-foreground: #fdfbf7;
-  --muted: #141a18;
-  --muted-foreground: #a0a0a0;
-  --accent: #141a18;
+  --background: #021a1a;
+  --foreground: #f3f4f6;
+  --card: #042c2c;
+  --card-foreground: #f3f4f6;
+  --popover: #042c2c;
+  --popover-foreground: #f3f4f6;
+  --primary: #fb923c; 
+  --primary-foreground: #021a1a;
+  --secondary: #053535;
+  --secondary-foreground: #fb923c;
+  --muted: #032424;
+  --muted-foreground: #9ca3af;
+  --accent: #053535;
   --accent-foreground: #fb923c;
   --destructive: #9b2c2c;
-  --border: #1d2624;
-  --input: #1d2624;
+  --border: #064040;
+  --input: #064040;
   --ring: #fb923c;
 }
 
-.dark[data-color="mustard"] {
-  --primary: #facc15;
-  --ring: #facc15;
-}
-.dark[data-color="wine"] {
-  --primary: #f87171;
-  --ring: #f87171;
-}
-.dark[data-color="teal"] {
-  --primary: #2dd4bf;
-  --ring: #2dd4bf;
+.dark {
+  --background: #0d0d0d;
+  --foreground: #f3f4f6;
+  --card: #151515;
+  --card-foreground: #f3f4f6;
+  --popover: #151515;
+  --popover-foreground: #f3f4f6;
+  --primary: #fb923c; 
+  --primary-foreground: #0d0d0d;
+  --secondary: #1a1a1a;
+  --secondary-foreground: #f3f4f6;
+  --muted: #1a1a1a;
+  --muted-foreground: #9ca3af;
+  --accent: #1a1a1a;
+  --accent-foreground: #fb923c;
+  --destructive: #9b2c2c;
+  --border: #222222;
+  --input: #222222;
+  --ring: #fb923c;
 }
 
 @layer base {
@@ -107,12 +80,23 @@
     background: var(--primary);
   }
   .text-gradient-bistro {
-    @apply text-primary opacity-100;
+    @apply text-primary;
   }
   .border-glow {
     @apply border border-primary/20;
     box-shadow: 0 0 15px color-mix(in srgb, var(--primary), transparent 90%);
   }
+  .vertical-text {
+    writing-mode: vertical-rl;
+  }
+  .animate-spin-slow {
+    animation: spin 15s linear infinite;
+  }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 /* Scrollbar */
